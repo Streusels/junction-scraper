@@ -52,5 +52,3 @@ suspend fun calculateAllDistances(client: HttpClient, hexagons: List<Hexagon>) {
     })
     jobs.forEach { it.join() }
 }
-
-
