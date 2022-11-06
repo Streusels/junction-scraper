@@ -9,46 +9,55 @@ enum class Feature(val tags: Array<String>) {
             "tourism=viewpoint",
             "leisure=nature_reserve",
             "tourism=picnic_site",
-            "natural=wood",
-            "natural=bay",
-            "natural=spring",
-            "leisure=park"
+            "leisure=park",
+            "amenity=grave_yard",
+            "barrier=hedge",
+            "building=tree_house",
+            "landuse=farmland",
+            "landuse=forest",
+            "landuse=meadow",
+            "landuse=orchard",
+            "landuse=vineyard",
+            "man_made=clearcut",
+            "natural~'[a-z]*'"
         )
     ),
     CULTURE(
         arrayOf(
             "amenity=cinema",
-            "tourism = museum",
-            "tourism=gallery",
+            "tourism~'[a-z]*'",
             "amenity = theatre",
             "building=church",
             "building=cathedral",
-            "amenity=arts_centre"
+            "amenity=arts_centre",
+            "building=church",
+            "landuse=religious",
+            "building=government",
+            "building=culture",
+            "building=civic",
+            "building=university",
+            "building=castle",
+            "building=ruins"
         )
     ),
     SHOPPING(
         arrayOf(
             "building=supermarket",
             "building=kiosk",
-            "shop=boutique",
-            "shop=clothes",
-            "shop=mall",
-            "amenity=marketplace"
+            "shop~'[a-z]*'",
+            "amenity=marketplace",
+            "building=retail",
+            "building=commercial"
         )
     ),
     FUN_SPORTS(
         arrayOf(
-            "leisure=water_park",
-            "sport=climbing_adventure",
-            "tourism=theme_park",
-            "natural=beach",
-            "amenity=public_bath",
-            "leisure=fitness_centre",
-            "leisure=fitness_station",
-            "leisure=swimming_pool",
-            "leisure=swimming_area",
-            "leisure=track",
-            "amenity=nightclub"
+            "leisure~'[a-z]*'",
+            "sport~'[a-z]*'",
+            "amenity=nightclub",
+            "building=grandstand",
+            "building=sports_hall",
+            "building=stadium"
         )
     ),
     RESTAURANTS(
@@ -59,8 +68,16 @@ enum class Feature(val tags: Array<String>) {
             "amenity=bar",
             "amenity=restaurant",
             "amenity=food_court",
+            "amenity=ice_cream",
             "amenity=ice_cream"
         )
     ),
-    PUBLIC_TRANSPORT(arrayOf("public_transport=stop_position"))
+    PUBLIC_TRANSPORT(
+        arrayOf(
+            "building=transportation",
+            "building=train_station",
+            "amenity=bus_station",
+            "public_transport~'[a-z]*'"
+        )
+    )
 }
