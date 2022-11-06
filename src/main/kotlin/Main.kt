@@ -1,5 +1,7 @@
 import distances.DistanceEndpoint
 import distances.calculateDistances
+import features.Feature
+import features.calculateFeatureCount
 import hexagons.Hexagon
 import hexagons.Hexagons
 import io.ktor.client.*
@@ -30,8 +32,8 @@ suspend fun main() {
         }
     }
 
-    calculateAllDistances(client, hexagons)
-
+//    calculateAllDistances(client, hexagons)
+    calculateFeatureCounts(client, hexagons)
 }
 
 suspend fun calculateAllDistances(client: HttpClient, hexagons: List<Hexagon>) {
@@ -50,5 +52,29 @@ suspend fun calculateAllDistances(client: HttpClient, hexagons: List<Hexagon>) {
     jobs.add(CoroutineScope(Dispatchers.IO).launch {
         calculateDistances(client, DistanceEndpoint.FOOT, footCar, hexagons)
     })
+
     jobs.forEach { it.join() }
+}
+
+suspend fun calculateFeatureCounts(client: HttpClient, hexagons: List<Hexagon>) {
+    val outFile = File("data/helsinki_features.txt")
+
+    val result = Array(hexagons.size) { IntArray(Feature.values().size) }
+
+    val jobs = ArrayList<Job>(Feature.values().size)
+
+    for (f in Feature.values().indices) {
+        val feature = Feature.values()[f]
+        jobs.add(CoroutineScope(Dispatchers.IO).launch {
+            val counts = calculateFeatureCount(client, feature, hexagons)
+            for (i in counts.indices) {
+                result[i][f] = counts[i]
+            }
+        })
+    }
+
+    jobs.forEach { it.join() }
+
+    val resultString = result.joinToString("\n") { it.joinToString(" ") }
+    outFile.writeText(resultString)
 }

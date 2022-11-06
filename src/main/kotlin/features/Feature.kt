@@ -1,0 +1,66 @@
+package features
+
+enum class Feature(val tags: Array<String>) {
+    NATURE(
+        arrayOf(
+            "leisure=park",
+            "tourism=theme_park",
+            "tourism=zoo",
+            "tourism=viewpoint",
+            "leisure=nature_reserve",
+            "tourism=picnic_site",
+            "natural=wood",
+            "natural=bay",
+            "natural=spring",
+            "leisure=park"
+        )
+    ),
+    CULTURE(
+        arrayOf(
+            "amenity=cinema",
+            "tourism = museum",
+            "tourism=gallery",
+            "amenity = theatre",
+            "building=church",
+            "building=cathedral",
+            "amenity=arts_centre"
+        )
+    ),
+    SHOPPING(
+        arrayOf(
+            "building=supermarket",
+            "building=kiosk",
+            "shop=boutique",
+            "shop=clothes",
+            "shop=mall",
+            "amenity=marketplace"
+        )
+    ),
+    FUN_SPORTS(
+        arrayOf(
+            "leisure=water_park",
+            "sport=climbing_adventure",
+            "tourism=theme_park",
+            "natural=beach",
+            "amenity=public_bath",
+            "leisure=fitness_centre",
+            "leisure=fitness_station",
+            "leisure=swimming_pool",
+            "leisure=swimming_area",
+            "leisure=track",
+            "amenity=nightclub"
+        )
+    ),
+    RESTAURANTS(
+        arrayOf(
+            "amenity=biergarten",
+            "amenity=cafe",
+            "amenity=fast_food",
+            "amenity=bar",
+            "amenity=restaurant",
+            "amenity=food_court",
+            "amenity=ice_cream"
+        )
+    ),
+    PUBLIC_TRANSPORT(arrayOf("public_transport=stop_position"))
+}
